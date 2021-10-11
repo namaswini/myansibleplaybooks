@@ -1,0 +1,36 @@
+---
+- name: webserver
+  hosts: all
+  become: true
+
+  tasks:
+    - name: installing httpd in RedHat
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+    
+    - name: starting service
+      service: 
+        name: httpd
+        state: started
+      when: ansible_os_family == "RedHat"
+
+    - name: installing httpd in Debion
+      yum:
+        name: httpd
+        service: latest
+      when: ansible_os_family == "Debion"
+
+    - name: starting service
+      service:
+          name : httpd
+          service: started
+      when: ansible_os_family == "Debion"
+
+    - name: copy index file
+      copy:
+         src: /home/suresh/index.html
+         dest: /var/www/html     
+
+

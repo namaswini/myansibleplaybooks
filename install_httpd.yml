@@ -1,0 +1,15 @@
+---
+- name: my test playbook
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: installing httpd
+      yum:
+        name: httpd
+        state: latest
+
+    - name: Start service httpd, if not started
+      service:
+        name: httpd
+        state: started

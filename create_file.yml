@@ -1,0 +1,10 @@
+---
+- name: creating a file
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: creating empty file
+      file:
+       path: "/home/suresh/saifile"
+       state: touch

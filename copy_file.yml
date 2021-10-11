@@ -1,0 +1,10 @@
+---
+- name: copying a file
+  hosts: webservers
+  become: true
+
+  tasks:
+    - name: copying a  file
+      copy:
+       src: /home/suresh/index.html
+       dest: /home/suresh
